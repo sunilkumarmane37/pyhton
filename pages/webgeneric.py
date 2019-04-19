@@ -1,4 +1,5 @@
 from pages.locgeneric import LocGeneric
+import allure
 
 
 class WebGeneric(LocGeneric):
@@ -14,3 +15,9 @@ class WebGeneric(LocGeneric):
     def click(self, locator_type, locator_val):
         e = self.locator(locator_type, locator_val)
         e.click()
+
+    def report_pass(self):
+        pass
+
+    def report_fail(self):
+        pass
