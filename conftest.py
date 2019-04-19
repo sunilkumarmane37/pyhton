@@ -2,15 +2,18 @@ import pytest
 import os
 from testdata import data as data
 
+
 def pytest_addoption(parser):
     parser.addoption('--browser', action='store', default='chrome', help='test help')
+
 
 @pytest.fixture(scope='class')
 def test_setup(request):
     from selenium import webdriver
-    browser = "chrome"#request.config.getoption("--browser")
+    browser = "chrome"  # request.config.getoption("--browser")
     if browser == "chrome":
-        driver = webdriver.Chrome(executable_path="C:\\Users\\Administrator\\PycharmProjects\\Framework_POM\\drivers\\chromedriver.exe")
+        driver = webdriver.Chrome(
+            executable_path="C:\\Users\\Hareesh\\PycharmProjects\\Framework_POM_9\\drivers\\chromedriver.exe")
     elif browser == "firefox":
         driver = webdriver.Firefox()
     driver.get(data.URL)
