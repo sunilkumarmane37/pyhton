@@ -1,7 +1,11 @@
 import moment
 import allure
 import os
+
+from selenium.webdriver import ActionChains
+
 from testdata import data as data
+
 
 class LocGeneric:
     def __init__(self, driver):
@@ -15,6 +19,8 @@ class LocGeneric:
                 ele = self.driver.find_element_by_id(locator_val)
             elif loc_type == "xpath":
                 ele = self.driver.find_element_by_xpath(locator_val)
+            elif loc_type == "tagname":
+                ele = self.driver.find_element_by_tag_name(locator_val)
             return ele
         except AssertionError as e:
             self.report_fail
@@ -38,4 +44,14 @@ class LocGeneric:
 
     def report_fail(self):
         self.get_screenshot()
+
+    def switch_to_frame_custom(self,loc_type,locator_val):
+        frame = self.locator(loc_type,locator_val)
+        self.driver.switch_to.frame(frame)
+
+    def move_src_dest(self,src_loc_type,src_loc_val,dest_loc_type,dest_loc_val):
+        a = ActionChains(self.driver)
+        src_element = self.locator(src_loc_type,src_loc_val)
+        des_element=self.locator(dest_loc_type,dest_loc_val)
+        a.drag_and_drop(src_element, des_element).perform()
 

@@ -1,4 +1,4 @@
-URL = 'http://localhost:8080/'
+URL = 'https://jqueryui.com/droppable/'
 UN = 'admin'
 PWD = 'manager'
 
