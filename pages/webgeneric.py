@@ -1,3 +1,5 @@
+from selenium.webdriver.support.select import Select
+
 from pages.locgeneric import LocGeneric
 import allure
 
@@ -21,3 +23,8 @@ class WebGeneric(LocGeneric):
 
     def report_fail(self):
         pass
+
+    def select_drp_dwn_val_by_visible_text(self,locator_type, locator_val,input_val):
+        day_element = self.locator(locator_type, locator_val)
+        sel = Select(day_element)
+        sel.select_by_visible_text(input_val)
